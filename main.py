@@ -1,6 +1,6 @@
 import telebot, wikipedia
 
-bot = telebot.TeleBot('')
+bot = telebot.TeleBot("")
 wikipedia.set_lang("ru")
 
 if __name__ == "__main__":
@@ -8,23 +8,23 @@ if __name__ == "__main__":
         try:
             ny = wikipedia.page(s)
             wikitext = ny.content[:1000]
-            wikimas = wikitext.split('.')
+            wikimas = wikitext.split(".")
             wikimas = wikimas[:-1]
-            wikitext2 = ''
+            wikitext2 = ""
             for x in wikimas:
-                if not ('==' in x):
+                if not ("==" in x):
                     if (len((x.strip())) > 3):
-                        wikitext2 = wikitext2 + x + '.'
+                        wikitext2 = wikitext2 + x + "."
                 else:
                     break
             return wikitext2
         except Exception as e:
-            return 'В энциклопедии нет информации об этом'
+            return "В энциклопедии нет информации об этом"
 
 
     @bot.message_handler(commands=["start"])
     def start(m, res=False):
-        bot.send_message(m.chat.id, 'Отправьте мне любое слово, и я найду его значение на Wikipedia')
+        bot.send_message(m.chat.id, "Отправьте мне любое слово, и я найду его значение на Wikipedia")
 
 
     @bot.message_handler(content_types=["text"])
